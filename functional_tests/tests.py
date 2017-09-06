@@ -72,13 +72,13 @@ class NewVisitorTest(LiveServerTestCase):
         self.browser.get(self.live_server_url)
         page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Buy peacock feathers', page_text)
-        self.assertnotIn('make a fly', page_text)
+        self.assertNotIn('make a fly', page_text)
 
         # Francis starts a new list by entering a new item.  he
         # is less interesting than Edith
         inputbox = self.browser.find_element_by_id('id_new_item')
         inputbox.send_keys('Buy milk')
-        inputbox.send_keys('Keys.ENTER)')
+        inputbox.send_keys(Keys.ENTER)
 
         # Francis gets his own unique URL
         francis_list_url = self.browser.current_url
@@ -88,7 +88,7 @@ class NewVisitorTest(LiveServerTestCase):
         # Again, there is no trace of Edith's list
         page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Buy peacock feathers', page_text)
-        self.assertnotIn('make a fly', page_text)
+        self.assertNotIn('make a fly', page_text)
         self.assertIn('Buy milk', page_text)
 
         # Satisfied, they both go back to sleep
