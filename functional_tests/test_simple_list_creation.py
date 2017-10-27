@@ -37,7 +37,7 @@ class NewVisitorTest(FunctionalTest):
 
         # There is still a text box inviting her to add another item, she
         # enters "Use peacock feathers to make a fly"
-        self.get_item_input_box()
+        inputbox = self.get_item_input_box()
         inputbox.send_keys('Use peacock feathers to make a fly')
         inputbox.send_keys(Keys.ENTER)
 
@@ -62,7 +62,7 @@ class NewVisitorTest(FunctionalTest):
 
         # Francis starts a new list by entering a new item.  he
         # is less interesting than Edith
-        self.get_item_input_box()
+        inputbox = self.get_item_input_box()
         inputbox.send_keys('Buy milk')
         inputbox.send_keys(Keys.ENTER)
 
