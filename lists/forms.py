@@ -1,7 +1,8 @@
 from django import forms
-from lists.models import Item
+from lists.models import Item,List
 
 EMPTY_ITEM_ERROR = "You can't have an empty list item"
+DUPLICATE_ITEM_ERROR = "You can't have the same item twice."
 
 class ItemForm(forms.models.ModelForm):
 
@@ -17,9 +18,7 @@ class ItemForm(forms.models.ModelForm):
         error_messages = {
             'text': {'required': EMPTY_ITEM_ERROR}
         }
-#    item_text =  forms.CharField(
-#        widget=forms.fields.TextInput(attrs={
-#            'placeholder': 'Enter a to-do item',
-#            'class': 'form-control input-lg',
-#            }),
-#        )
+
+    def save(self, for_list):
+        self.instance.list = for_list
+        return super().save()
