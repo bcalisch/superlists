@@ -7,6 +7,12 @@ from lists.forms import (ItemForm, EMPTY_ITEM_ERROR
 
 class ItemFormTest(TestCase):
 
+    def test_form_save(self):
+        list_ = List.objects.create()
+        form = ExistingListItemForm(for_list=list_, data={'text':'hi'})
+        new_item = form.save()
+        self.assertEqual(new_item, Item.objects.all()[0])
+
     def test_form_renders_item_text_input(self):
         form = ItemForm()
         self.assertIn('placeholder="Enter a to-do item"', form.as_p())
